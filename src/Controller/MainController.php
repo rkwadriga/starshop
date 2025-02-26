@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_home', methods: ['GET'])]
+    #[Route('/', name: 'app_main_homepage', methods: ['GET'])]
     public function homepage(): Response
     {
         $starshipCount = 465;
