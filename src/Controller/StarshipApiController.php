@@ -22,7 +22,7 @@ class StarshipApiController extends AbstractController
     public function getOne(StarshipRepository $repository, int $id): Response
     {
         $starship = $repository->findOne($id);
-        if ($starship === null) {
+        if (null === $starship) {
             throw $this->createNotFoundException('Starship not found');
         }
 

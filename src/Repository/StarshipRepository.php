@@ -43,6 +43,6 @@ readonly class StarshipRepository
 
     public function findOne(int $id): ?Starship
     {
-        return array_find($this->findAll(), fn($starship) => $starship->getId() === $id);
+        return array_find($this->findAll(), fn ($starship) => $starship->getId() === $id);
     }
 }
