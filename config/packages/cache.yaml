@@ -13,7 +13,14 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+        #app: cache.adapter.array
 
         # Namespaced pools use the above "app" backend by default
-        #pools:
-            #my.dedicated.cache: null
+        pools:
+            iss_location_pull:
+                default_lifetime: 5
+
+when@prod:
+    framework:
+        cache:
+            app: cache.adapter.filesystem
