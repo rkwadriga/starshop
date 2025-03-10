@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use DateTimeImmutable;
+
 class Starship
 {
     public function __construct(
@@ -10,6 +12,7 @@ class Starship
         private string $class,
         private string $captain,
         private StarshipStatusEnum $status,
+        private DateTimeImmutable $arrivedAt,
     ) {
     }
 
@@ -46,5 +49,10 @@ class Starship
     public function getStatusImgFileName(): string
     {
         return "images/status-{$this->status->value}.png";
+    }
+
+    public function getArrivedAt(): DateTimeImmutable
+    {
+        return $this->arrivedAt;
     }
 }

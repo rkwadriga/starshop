@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Model\Starship;
 use App\Model\StarshipStatusEnum;
+use DateTimeImmutable;
 use Psr\Log\LoggerInterface;
 
 readonly class StarshipRepository
@@ -24,6 +25,7 @@ readonly class StarshipRepository
                 'Garden',
                 'Jean-Luc Pickles',
                 StarshipStatusEnum::IN_PROGRESS,
+                new DateTimeImmutable('-1 day'),
             ),
             new Starship(
                 2,
@@ -31,6 +33,7 @@ readonly class StarshipRepository
                 'Latte',
                 'James T. Quick!',
                 StarshipStatusEnum::COMPLETED,
+                new DateTimeImmutable('-1 week'),
             ),
             new Starship(
                 3,
@@ -38,6 +41,7 @@ readonly class StarshipRepository
                 'Delta Tourist',
                 'Kathryn Journeyway',
                 StarshipStatusEnum::WAITING,
+                new DateTimeImmutable('-1 month'),
             ),
         ];
     }
