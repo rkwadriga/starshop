@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Repository\StarshipRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,13 +16,12 @@ class MainController extends AbstractController
     public function homepage(
         StarshipRepository $repository,
         HttpClientInterface $client,
-        CacheInterface $issLocationPull
+        CacheInterface $issLocationPool,
     ): Response {
         $ships = $repository->findAll();
         $myShip = $ships[array_rand($ships)];
 
-        $issData = $issLocationPull->get('iss_data', function (CacheItem $item) use ($client) {
-            $item->expiresAfter(3600);
+        $issData = $issLocationPool->get('iss_data', function () use ($client) {
             $response = $client->request(Request::METHOD_GET, 'https://api.wheretheiss.at/v1/satellites/25544');
             return $response->toArray();
         });
